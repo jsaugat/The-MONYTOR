@@ -1,0 +1,10 @@
+@import url("https://fonts.cdnfonts.com/css/inter");
+
+html,
+body,
+:root,
+app {
+  height: 100%;
+  width: 100%;
+  font-family: "Inter", sans-serif;
+}
