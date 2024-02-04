@@ -9,6 +9,9 @@ import clientRoutes from "./routes/client.js";
 import generalRoutes from "./routes/general.js";
 import managementRoutes from "./routes/management.js";
 import salesRoutes from "./routes/sales.js";
+// data imports
+import User from "./models/User.js";
+import { dataUser } from "./data/index.js";
 
 /* CONFIGURATION */
 dotenv.config();
@@ -19,7 +22,12 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" })); // Config
 app.use(morgan("common")); // Log HTTP requests to the console (using the 'morgan' middleware)
 app.use(bodyParser.json()); // Parse incoming JSON requests
 app.use(bodyParser.urlencoded({ extended: false })); // Parse incoming URL-encoded requests
-app.use(cors()); // Enable Cross-Origin Resource Sharing (CORS) for the Express app
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN, // CORS_ORIGIN in .env is defined as who to provide access of backend to.
+    credentials: true,
+  })
+);
 
 /* ROUTES */
 app.use("/client", clientRoutes);
@@ -30,15 +38,20 @@ app.use("/sales", salesRoutes);
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000;
 mongoose
-  .connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGO_URL)
   .then(() => {
     app.listen(PORT, () => {
       console.log("🟢 SUCCESS :: MONGODB CONNECTED");
       console.log("👁️  Watching on port http://localhost:" + PORT);
     });
+    //! ADDING MOCK DATA: ONLY ADD THIS DATA ONCE:
+    User.insertMany(dataUser)
+      .then((docs) => {
+        console.log("Documents inserted successfully:", docs);
+      })
+      .catch((error) => {
+        console.error("Error inserting documents:", error);
+      });
   })
   .catch((error) => {
     console.log("ERROR 🔴 :: MONGODB NOT CONNECTED", error);

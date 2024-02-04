@@ -17309,7 +17309,7 @@ export const dataAffiliateStat = [
   export const dataUser = [
     {
       _id: "63701cc1f03239c72c00017f",
-      name: "Konstantine",
+      name: "Kristine",
       email: "kranstead0@narod.ru",
       password: "omMDCh",
       city: "Nurabelen",
