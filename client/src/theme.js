@@ -41,7 +41,6 @@ export const tokensDark = {
     900: "#332a14",
   },
 };
-
 //? function that reverses the color palette
 function reverseTokens(tokensDark) {
   const reversedTokens = {};
@@ -59,7 +58,7 @@ function reverseTokens(tokensDark) {
 }
 export const tokensLight = reverseTokens(tokensDark);
 
-// mui theme settings
+//? mui theme settings
 export const themeSettings = (mode) => {
   return {
     palette: {
