@@ -44,7 +44,7 @@ mongoose
       console.log("🟢 SUCCESS :: MONGODB CONNECTED");
       console.log("👁️  Watching on port http://localhost:" + PORT);
     });
-    //! ADDING MOCK DATA: ONLY ADD THIS DATA ONCE:
+    //? ADDING MOCK DATA: ONLY ADD THIS DATA ONCE:
     User.insertMany(dataUser)
       .then((docs) => {
         console.log("Documents inserted successfully:", docs);
