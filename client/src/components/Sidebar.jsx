@@ -130,11 +130,11 @@ const Sidebar = ({
           <Box width="100%">
             <Box m="1.5rem 2rem 2rem 3rem">
               <FlexBetween color={theme.palette.secondary.main}>
-                <Box display="flex" alignItems="center" gap="0.5rem">
+                {/* <Box display="flex" alignItems="center" gap="0.5rem">
                   <Typography variant="h4" fontWeight="bold">
                     ECOMVISION
                   </Typography>
-                </Box>
+                </Box> */}
                 {!isNonMobile && (
                   <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                     <ChevronLeft />
